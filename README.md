@@ -7,3 +7,6 @@
 
 ### Trabalhando com modulos no nest
 - https://docs.nestjs.com/modules#modules
+
+### Trabalhando com controllers no nest
+- https://docs.nestjs.com/controllers
