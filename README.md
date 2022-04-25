@@ -4,3 +4,6 @@
 ### Trabalhando com Nestjs
 - cli: https://docs.nestjs.com/cli/overview
 - https://docs.nestjs.com/
+
+### Trabalhando com modulos no nest
+- https://docs.nestjs.com/modules#modules
