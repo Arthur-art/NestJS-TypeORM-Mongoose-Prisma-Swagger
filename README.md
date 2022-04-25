@@ -5,8 +5,11 @@
 - cli: https://docs.nestjs.com/cli/overview
 - https://docs.nestjs.com/
 
-### Trabalhando com modulos no nest
+### Trabalhando com modulos no Nestjs
 - https://docs.nestjs.com/modules#modules
 
-### Trabalhando com controllers no nest
+### Trabalhando com controllers no Nestjs
 - https://docs.nestjs.com/controllers
+
+### Trabalhando com serviços no Nestjs
+- https://docs.nestjs.com/providers#services
