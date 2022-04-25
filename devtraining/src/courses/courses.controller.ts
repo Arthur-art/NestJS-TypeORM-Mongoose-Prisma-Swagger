@@ -1,10 +1,11 @@
-import { Body, Controller,Delete,Get, HttpCode, HttpStatus, Param, Patch, Post, Res } from '@nestjs/common';
+import { Body, Controller,Delete,Get,Param, Patch, Post, Res } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 
 type CreateUserProps = {
+    id: number;
     name: string;
-    description:string;
-    price: number;
+    description: string;
+    tags: string[];
 }
 
 @Controller('courses')
@@ -13,35 +14,30 @@ export class CoursesController {
     constructor(private readonly coursesService: CoursesService){}
 
     @Get('list')
-    findAll(@Res() response){
-       return response.status(200).send('Listagem de cursos');
+    findAll(){
+       return this.coursesService.findAll();
     }
 
     //Trabalhando com parametros courses/:id
     @Get(':id')
-    @HttpCode(HttpStatus.ACCEPTED)
     findOne(@Param('id') id:string){
-        return `Curso #${id} - Trabalhando com parametros no nestjs`;
+        return this.coursesService.findOne(id);
     }
 
     //Trabalhando com metodo Post
     @Post()
-    @HttpCode(HttpStatus.ACCEPTED)
-    createUser(@Body() body:CreateUserProps){
-        return body.description;
+    createUser(@Body() body:any){
+        return this.coursesService.create(body);
     }
 
     //Trabalhando com metodo Put
     @Patch(':id')
     update(@Param('id') id:string, @Body() body:CreateUserProps){
-        return {
-           curso: `Atualização do Curso #${id} - Trabalhando com parametros no nestjs`,
-            object: body
-        };
+        return this.coursesService.update(id, body)
     }
 
     @Delete(':id')
     findDeleteAll(@Param('id') id:string){
-       return `Exclusao do curso #${id}`
+       return this.coursesService.remove(id)
     }
 }

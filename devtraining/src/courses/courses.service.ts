@@ -24,8 +24,9 @@ export class CoursesService {
         })
     }
 
-    create(createCourseDto:Course){
-        return this.courses.push(createCourseDto);
+    create(createCourseDto:any){
+        this.courses.push(createCourseDto);
+        return this.findAll()
     }
 
     update(id:string,updateCourseDto:Course){
@@ -41,8 +42,9 @@ export class CoursesService {
             return value.id === Number(id);
         })
 
-        if(indexCourse >= 0){
-            this.courses.splice(indexCourse, 1);
-        }
+        
+        this.courses.splice(indexCourse, 1);
+        
+        return this.findAll()
     }
 }
