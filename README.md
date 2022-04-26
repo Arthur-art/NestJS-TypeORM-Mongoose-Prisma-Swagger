@@ -13,3 +13,6 @@
 
 ### Trabalhando com serviços no Nestjs
 - https://docs.nestjs.com/providers#services
+
+### Trabalhando com DTO(Data Transfer Object)
+- https://www.youtube.com/watch?v=zfWmbEVpABs&list=PLE0DHiXlN_qqRNX4KpkNKvFswCXHUwoyL&index=12

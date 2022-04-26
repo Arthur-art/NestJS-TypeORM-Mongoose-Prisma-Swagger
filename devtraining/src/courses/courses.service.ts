@@ -35,7 +35,7 @@ export class CoursesService {
         return this.findAll()
     }
 
-    update(id:string,updateCourseDto:Course){
+    update(id:string,updateCourseDto:any){
         const indexCourse = this.courses.findIndex((value)=>{
             return value.id === Number(id);
         })

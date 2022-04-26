@@ -1,5 +1,7 @@
 import { Body, Controller,Delete,Get,Param, Patch, Post, Res } from '@nestjs/common';
 import { CoursesService } from './courses.service';
+import { CreateCourseDto } from './dto/create-course.dto';
+import { UpdateCourseDto } from './dto/update-course.dto';
 
 type CreateUserProps = {
     id: number;
@@ -26,13 +28,13 @@ export class CoursesController {
 
     //Trabalhando com metodo Post
     @Post()
-    createUser(@Body() body:any){
-        return this.coursesService.create(body);
+    create(@Body() createCourseDto:CreateCourseDto){
+        return this.coursesService.create(createCourseDto);
     }
 
-    //Trabalhando com metodo Put
+    //Trabalhando com metodo Patch
     @Patch(':id')
-    update(@Param('id') id:string, @Body() body:CreateUserProps){
+    update(@Param('id') id:string, @Body() body:UpdateCourseDto){
         return this.coursesService.update(id, body)
     }
 
