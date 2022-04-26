@@ -1,4 +1,4 @@
-## CURSO FUNDAMENTOS DO FRAMEWORK NESTJS
+## CURSO NestJS do Zero com TypeORM, Mongoose, Prisma e Swagger
 - Link para o curso: https://www.udemy.com/course/nestjs-do-zero/
 
 ### Trabalhando com Nestjs
