@@ -2,7 +2,8 @@
 - Link para o curso: https://www.udemy.com/course/nestjs-do-zero/
 
 ### Trabalhando com Nestjs
-- cli: https://docs.nestjs.com/cli/overview
+- cli:
+  - https://docs.nestjs.com/cli/overview
 - https://docs.nestjs.com/
 
 ### Trabalhando com modulos no Nestjs
@@ -25,5 +26,8 @@
 - https://docs.nestjs.com/openapi/mapped-types
 
 ### Trabalhando com TypeORM e Postgres
-- https://docs.nestjs.com/recipes/sql-typeorm#sql-typeorm
-- https://medium.com/@gausmann.simon/nestjs-typeorm-and-postgresql-full-example-development-and-project-setup-working-with-database-c1a2b1b11b8f
+- Configurando typeorm no nestjs:
+  - https://docs.nestjs.com/recipes/sql-typeorm#sql-typeorm
+  - https://medium.com/@gausmann.simon/nestjs-typeorm-and-postgresql-full-example-development-and-project-setup-working-with-database-c1a2b1b11b8f
+- Trabalhando com Entidades no TypeORM:
+  -  https://typeorm.io/entities  
