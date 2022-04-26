@@ -32,7 +32,7 @@ export class CoursesService {
 
     create(createCourseDto:any){
         this.courses.push(createCourseDto);
-        return this.findAll()
+        return createCourseDto;
     }
 
     update(id:string,updateCourseDto:any){
