@@ -2,14 +2,6 @@ import { Body, Controller,Delete,Get,Param, Patch, Post, Res } from '@nestjs/com
 import { CoursesService } from './courses.service';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
-
-type CreateUserProps = {
-    id: number;
-    name: string;
-    description: string;
-    tags: string[];
-}
-
 @Controller('courses')
 export class CoursesController {
 

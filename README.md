@@ -16,3 +16,10 @@
 
 ### Trabalhando com DTO(Data Transfer Object)
 - https://www.youtube.com/watch?v=zfWmbEVpABs&list=PLE0DHiXlN_qqRNX4KpkNKvFswCXHUwoyL&index=12
+
+### Trabalhando com ValidationPipe
+- https://docs.nestjs.com/techniques/validation#using-the-built-in-validationpipe
+
+### Trabalhando com Mapped types
+- https://www.npmjs.com/package/@nestjs/mapped-types
+- https://docs.nestjs.com/openapi/mapped-types
