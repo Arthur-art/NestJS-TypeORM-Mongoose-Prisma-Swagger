@@ -12,19 +12,16 @@ export class CoursesController {
        return this.coursesService.findAll();
     }
 
-    //Trabalhando com parametros courses/:id
     @Get(':id')
     findOne(@Param('id') id:string){
         return this.coursesService.findOne(id);
     }
 
-    //Trabalhando com metodo Post
     @Post()
     create(@Body() createCourseDto:CreateCourseDto){
         return this.coursesService.create(createCourseDto);
     }
 
-    //Trabalhando com metodo Patch
     @Patch(':id')
     update(@Param('id') id:string, @Body() body:UpdateCourseDto){
         return this.coursesService.update(id, body)
