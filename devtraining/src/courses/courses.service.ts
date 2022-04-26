@@ -1,10 +1,17 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { Course } from './entities/course.entity';
 
 @Injectable()
 export class CoursesService {
 
-    //Estrutura de dados em memória
+    constructor(
+        @InjectRepository(Course)
+        private readonly courseRepositoy: Repository<Course>
+        ){}
+
+    /*Estrutura de dados em memória
     private courses: Course[] = [
         {
             id: 1,
@@ -13,16 +20,16 @@ export class CoursesService {
             tags: ["node.js", "nestjs", "javascript"]
         }
     ];
+    */
 
     findAll(){
-        return this.courses;
+        return this.courseRepositoy.find();
     }
 
     findOne(id:string){
 
-        const course = this.courses.find((value)=>{
-            return value.id === Number(id);
-        })
+        const course = this.courseRepositoy.findOne(id)
+
         if(!course){
             throw new HttpException(`Course ID ${id} not found`, HttpStatus.NOT_FOUND)
         }else{
