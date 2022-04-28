@@ -35,7 +35,7 @@
   - https://typeorm.io/working-with-repository
 - Trabalhando com relacionamentos no banco de dados com typeorm
   - https://typeorm.io/relations
-- Utilizando a opção @JoinTable para trabalhar com relão de many to many
+- Utilizando a opção @JoinTable para trabalhar com relação de many to many
   - https://typeorm.io/relations#jointable-options
 
 
