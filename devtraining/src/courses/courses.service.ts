@@ -1,6 +1,8 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { CreateCourseDto } from './dto/create-course.dto';
+import { UpdateCourseDto } from './dto/update-course.dto';
 import { Course } from './entities/course.entity';
 
 @Injectable()
@@ -31,35 +33,38 @@ export class CoursesService {
         const course = this.courseRepositoy.findOne(id)
 
         if(!course){
-            throw new HttpException(`Course ID ${id} not found`, HttpStatus.NOT_FOUND)
+            throw new NotFoundException(`Course ID ${id} not found`)
         }else{
             return course;
         }
     }
 
-    create(createCourseDto:any){
-        this.courses.push(createCourseDto);
-        return createCourseDto;
+    create(createCourseDto: CreateCourseDto){
+        const course = this.courseRepositoy.create(createCourseDto)
+        return this.courseRepositoy.save(course);
     }
 
-    update(id:string,updateCourseDto:any){
-        const indexCourse = this.courses.findIndex((value)=>{
-            return value.id === Number(id);
-        })
+  async update(id:string,updateCourseDto: UpdateCourseDto){
+       const course = await this.courseRepositoy.preload({
+           id: +id,
+           ...updateCourseDto
+       })
 
-        return this.courses[indexCourse] = updateCourseDto;
+       if(!course){
+           throw new NotFoundException(`Course ID ${id} not found`)
+       }
+
+       return this.courseRepositoy.save(course)
     }
 
-    remove(id:string){
-        const indexCourse = this.courses.findIndex((value)=>{
-            return value.id === Number(id);
-        })
+   async remove(id:string){
+        const course = await this.courseRepositoy.findOne(id)
 
-        if(indexCourse >= 0){
-            this.courses.splice(indexCourse, 1);
-            return this.findAll()
-        }else{
-            throw new HttpException(`Course ID ${id} not found`, HttpStatus.NOT_FOUND)
+        if(!course){
+            throw new NotFoundException(`Course ID ${id} not found`)
         }
+ 
+        return this.courseRepositoy.remove(course)
+
     }
 }
