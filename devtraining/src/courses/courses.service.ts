@@ -1,16 +1,19 @@
-import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { Course } from './entities/course.entity';
+import { TagEntity } from './entities/tag.entity';
 
 @Injectable()
 export class CoursesService {
 
     constructor(
         @InjectRepository(Course)
-        private readonly courseRepositoy: Repository<Course>
+        private readonly courseRepositoy: Repository<Course>,
+        @InjectRepository(TagEntity)
+        private readonly tagEntityRepository: Repository<TagEntity>
         ){}
 
     /*Estrutura de dados em memória
@@ -66,5 +69,15 @@ export class CoursesService {
  
         return this.courseRepositoy.remove(course)
 
+    }
+
+    private async preloadTagByName(name:string): Promise<TagEntity>{
+        const tag = await this.tagEntityRepository.findOne({name});
+
+        if(tag){
+            return tag;
+        }
+
+        return this.tagEntityRepository.create({name});
     }
 }
