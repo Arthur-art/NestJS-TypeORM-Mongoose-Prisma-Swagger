@@ -42,15 +42,29 @@ export class CoursesService {
         }
     }
 
-    create(createCourseDto: CreateCourseDto){
-        const course = this.courseRepositoy.create(createCourseDto)
+  async create(createCourseDto: CreateCourseDto){
+
+        const tags = await Promise.all(
+            createCourseDto.tags.map((name)=> this.preloadTagByName(name))
+        );
+
+        const course = this.courseRepositoy.create({
+            ...createCourseDto,
+            tags,
+        });
         return this.courseRepositoy.save(course);
     }
 
   async update(id:string,updateCourseDto: UpdateCourseDto){
+
+        const tags = updateCourseDto.tags && (
+            await Promise.all(updateCourseDto.tags.map((name)=> this.preloadTagByName(name)))
+        );
+
        const course = await this.courseRepositoy.preload({
-           id: +id,
-           ...updateCourseDto
+         id: +id,
+         ...updateCourseDto,
+         tags
        })
 
        if(!course){

@@ -13,5 +13,5 @@ export class Course {
     @ManyToMany(() => TagEntity, (course) => course.courses,{
         cascade: true
     })
-    tags: string[];
+    tags: TagEntity[];
 }

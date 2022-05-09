@@ -8,5 +8,5 @@ export class TagEntity {
     @Column()
     name: string;
     @ManyToMany(()=> Course, (tag)=> tag.tags)
-    courses: Course
+    courses: Course[]
 }
