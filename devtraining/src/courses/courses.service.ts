@@ -16,24 +16,17 @@ export class CoursesService {
         private readonly tagEntityRepository: Repository<TagEntity>
         ){}
 
-    /*Estrutura de dados em memória
-    private courses: Course[] = [
-        {
-            id: 1,
-            name: "Fundamentos do Framework NestJS",
-            description: "Trabalhando com NestJS",
-            tags: ["node.js", "nestjs", "javascript"]
-        }
-    ];
-    */
-
     findAll(){
-        return this.courseRepositoy.find();
+        return this.courseRepositoy.find({
+            relations: ['tags']
+        });
     }
 
     findOne(id:string){
 
-        const course = this.courseRepositoy.findOne(id)
+        const course = this.courseRepositoy.findOne(id,{
+            relations: ['tags']
+        })
 
         if(!course){
             throw new NotFoundException(`Course ID ${id} not found`)

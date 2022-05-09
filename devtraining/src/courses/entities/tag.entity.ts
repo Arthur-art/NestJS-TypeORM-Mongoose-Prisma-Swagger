@@ -7,6 +7,6 @@ export class TagEntity {
     id: number;
     @Column()
     name: string;
-    @ManyToMany(()=> Course, (tag)=> tag.tags)
+    @ManyToMany(()=> Course, (course)=> course.tags)
     courses: Course[]
 }
