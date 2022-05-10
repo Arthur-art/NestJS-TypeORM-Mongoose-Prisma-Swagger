@@ -37,5 +37,13 @@
   - https://typeorm.io/relations
 - Utilizando a opção @JoinTable para trabalhar com relação de many to many
   - https://typeorm.io/relations#jointable-options
+- Trabalhando com migrations no typeORM
+  - Depois de entrar em produção, você precisará sincronizar as alterações do modelo no banco de dados. Normalmente, não é seguro usar "synchronize: true" para sincronização de esquema na produção depois de obter dados em seu banco de dados. Aqui é onde as migrações vêm para ajudar.
+  - https://typeorm.io/migrations
+  - npx typeorm migration:create -n CourseRefactoring
+  - apos descrever os metodos up e down da migration, você deve executar um 
+    - "npm run build" para atualizar a pasta /dist
+    - para executar a migration basta executar "npx typeorm migration:run"
+    - para desfazer oque foi feito basta executar "npx typeorm migration:reverte"
 
 
