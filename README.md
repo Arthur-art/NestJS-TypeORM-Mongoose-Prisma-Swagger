@@ -46,4 +46,25 @@
     - para executar a migration basta executar "npx typeorm migration:run"
     - para desfazer oque foi feito basta executar "npx typeorm migration:reverte"
 
+### Trabalhando com Docker
+- https://docs.docker.com/get-started/
+  - Criando na raiz do projeto um arquivo "Dockerfile", adicionando o seguinte código para iniciar um container com as dependencias necessarias:
+```dockerfile
+FROM node:14.15.4-alpine3.12
 
+RUN apk add --no-cache nodejs
+
+RUN npm install -g @nestjs/cli
+
+USER node
+
+WORKDIR /home/node/app
+```
+  - Criando arquivo docker para subir uma imagem do postgres na pasta ".docker/postgres/Dockerfile"
+```dockerfile
+FROM postgres
+
+RUN usermod -u 1000 postgres
+```
+- Criando arquivo entrypoint na pasta ".docker/postgres/entrypoint para realizar comandos no linux no container docker
+- Rodar no terminal bash "chmod +x .docker/entrypoint.sh" para dar permissão ao arquivo
