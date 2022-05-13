@@ -71,7 +71,47 @@ RUN usermod -u 1000 postgres
 - Trabalhando com docker compose
   - https://docs.docker.com/compose/
   - criando arquivo na raiz do projeto:"docker-compose.yml"
-```dockerfile
+```yml
+version: '3'
 
+services:
+  app:
+    build: .
+    entrypoint: .docker/entrypoint.sh
+    container_name: cursonestjs-app
+    ports:
+      - "3001:3000"
+    volumes:
+      - .:/home/node/app
+    depends_on:
+      - db
+      
+    
+  db:
+    build: .docker/postgres
+    container_name: cursonestjs-db
+    restart: always
+    tty: true
+    ports:
+      - "5432:5432"
+    volumes:
+      - .docker/dbdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=cursonestjs
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: cursonestjs-pgadmin
+    tty: true
+    environment:
+      -  PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      -  PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - "8000:80"
+    depends_on:
+      - db
 ```
+  - executar no terminal:
+    - docker-compose up
 
