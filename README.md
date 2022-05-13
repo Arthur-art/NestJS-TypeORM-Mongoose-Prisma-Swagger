@@ -66,5 +66,12 @@ FROM postgres
 
 RUN usermod -u 1000 postgres
 ```
-- Criando arquivo entrypoint na pasta ".docker/postgres/entrypoint para realizar comandos no linux no container docker
-- Rodar no terminal bash "chmod +x .docker/entrypoint.sh" para dar permissão ao arquivo
+  - Criando arquivo entrypoint na pasta ".docker/postgres/entrypoint" para realizar comandos no linux no container docker
+  - Rodar no terminal bash "chmod +x .docker/entrypoint.sh" para dar permissão ao arquivo
+- Trabalhando com docker compose
+  - https://docs.docker.com/compose/
+  - criando arquivo na raiz do projeto:"docker-compose.yml"
+```dockerfile
+
+```
+
